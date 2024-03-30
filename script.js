@@ -3,7 +3,7 @@ const video = document.querySelector('video');
 const progressRange = document.querySelector('.progress-range');
 const progressBar = document.querySelector('.progress-bar');
 const playBtn = document.getElementById('play-btn');
-const voulumeIcon = document.getElementById('volume-icon');
+const volumeIcon = document.getElementById('volume-icon');
 const volumeRange = document.querySelector('.volume-range');
 const volumeBar = document.querySelector('.volume-bar');
 const speed = document.querySelector('.player-speed');
@@ -81,31 +81,31 @@ function changeVolume(e) {
     volumeBar.style.width = `${volume * 100}%`;
     video.volume = volume;
     // Change icon depending on volume
-    voulumeIcon.className = '';
+    volumeIcon.className = '';
     if (volume > 0.7) {
-        voulumeIcon.classList.add('fas','fa-volume-up');
+        volumeIcon.classList.add('fas','fa-volume-up');
     }else if (volume < 0.7 && volume > 0) {
-        voulumeIcon.classList.add('fas', 'fa-volume-down');
+        volumeIcon.classList.add('fas', 'fa-volume-down');
     }else if (volume === 0) {
-        voulumeIcon.classList.add('fas','fa-volume-off');
+        volumeIcon.classList.add('fas','fa-volume-off');
     }
     lastVolume = volume;
 }
 
 // Mute / Unmute 
 function toggleMute() {
-   voulumeIcon.className = '';
+   volumeIcon.className = '';
     if (video.volume) {
         lastVolume = video.volume;
         video.volume = 0;
         volumeBar.style.width =0;
-        voulumeIcon.classList.add('fas', 'fa-volume-mute');
-        voulumeIcon.setAttribute('title', 'Unmute');
+        volumeIcon.classList.add('fas', 'fa-volume-mute');
+        volumeIcon.setAttribute('title', 'Unmute');
     }else {
         video.volume = lastVolume;
         volumeBar.style.width = `${lastVolume * 100}%`;
-        voulumeIcon.classList.add('fas', 'fa-volume-up');
-        voulumeIcon.setAttribute('title', 'Mute');
+        volumeIcon.classList.add('fas', 'fa-volume-up');
+        volumeIcon.setAttribute('title', 'Mute');
     }
 }
 
@@ -172,6 +172,6 @@ video.addEventListener('timeupdate', updateProgress);
 video.addEventListener('canplay', updateProgress);
 progressRange.addEventListener('click', setProgress );
 volumeRange.addEventListener('click', changeVolume);
-voulumeIcon.addEventListener('click', toggleMute);
+volumeIcon.addEventListener('click', toggleMute);
 speed.addEventListener('change', changeSpeed);
 fullscreenBtn.addEventListener('click', toggleFullscreen);
